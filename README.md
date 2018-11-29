@@ -4,6 +4,8 @@
 
   该框架下项目将基于VUE框架的[Webpack](https://github.com/vuejs-templates/webpack)模版进行改编；
 
+  使用过程中有任何问题和建议，欢迎邮件交流: lance_amethyst@hotmail.com
+  
 # 使用办法
 
   1. 下载本模版，假设下载地址为：/home/coder/fpg
