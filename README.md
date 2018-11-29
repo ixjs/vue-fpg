@@ -47,4 +47,4 @@ $ git commit -m "initialize project"
 
 #其他
 
-  更多可见框架安装完成后的说明文件： ./framework/README.md
+  更多可见框架安装完成后的说明文件： [framework/README.md](https://github.com/ixjs/vue-fpg/blob/master/template/framework/README.md)
