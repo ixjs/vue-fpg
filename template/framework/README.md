@@ -42,11 +42,13 @@
 			router/
 		等多个共享目录；调整时请谨慎，避免影响到其他项目。这些共享文件可以在各项目下使用”@“方法直接引
 		用(可以参考项目代码模版中的vue文件)。如存在非公司共享级的代码文件或者需要定制，可以自行复制到
-		各自项目的src目录下进行改编；
+		各自项目的src目录下进行改编。
 
-	4. framework/lib/dom 下的文件为静态共享JS库文件。可以在项目 [index.html](https://github.com/ixjs/vue-fpg/edit/master/template/framework/base/template/index.html) 中对其使用相对路
+	4. framework/lib/dom 下的文件为静态共享JS库文件。可以在 中对其使用相对路
 		径 env/xxx.js 引用，如下：
-		
+
+项目 [index.html](https://github.com/ixjs/vue-fpg/edit/master/template/framework/base/template/index.html)
+
 		<script data-type="base" type="text/javascript" src="env/base64.min.js"></script>
 
 	5. 对任一项目（假设项目目录为prj1），可以在工程组根目录下执行如下相关命令：
