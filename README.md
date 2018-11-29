@@ -1,6 +1,6 @@
 # 模板说明：
 
-  [FPG框架](https://github.com/ixjs/vue-fpg/docs/what_is_it.pdf)是基于VUE框架制定的企业级多项目工程组框架（Frontend Projects Group enterprise framework）；
+  [FPG框架](https://github.com/ixjs/vue-fpg/docs/what_is_fpg.pdf)是基于VUE框架制定的企业级多项目工程组框架（Frontend Projects Group enterprise framework）；
 
   该框架下项目将基于VUE框架的[Webpack](https://github.com/vuejs-templates/webpack)模版进行改编；
   
