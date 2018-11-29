@@ -14,8 +14,8 @@
 	
 4. 执行完成后，工程根目录下出现5个软链接和一个自动加载完成的node_modules。
 
-	如希望node_modules手动加载，可以在第2步时，手动生成该目录，待第3步完成后，自行执
-	行'npm install'或者复制已存在的node_modules库。
+		如希望node_modules手动加载，可以在第2步时，手动生成该目录，待第3步完成后，自行执
+		行'npm install'或者复制已存在的node_modules库。
 	
 5. 如果需要在该工作组下创建新项目，有2种方式：
 		
@@ -33,13 +33,13 @@
 
 1. framework目录属于本框架的中枢，一般情况下不需要调整，如需调整请谨慎。
 
-2. 工程组根目录下的目录（除node_modules外)都是对framework内容的引用，可以随framework一起提交；
-	如果操作不系统不支持文件引用的方式，也可以按照脚本的要求复制文件，但需要注意一旦修改，需要
-	同步回对应文件再提交；
+2. 工程组根目录下配置文件和pacakge.json文件都是对framework/env下文件的引用，可以随framework一起提交；
+	如果操作系统不支持文件引用的方式，也可以按照脚本的要求复制文件，但需要注意一旦修改，需要同步回对
+	应文件再提交；
 
 3. framework/share目录下属于全工程组项目可共享，其下包括：
 	
-		_mixins/ 
+		_mixins/
 		biz-components/ 
 		components/
 		engine/
@@ -61,15 +61,15 @@
 				
 			# npm run preless:prj1
 		
-		整合将以LESS mixins的方式使用；其结果将生成如下：
+	整合将以LESS mixins的方式使用；其结果将生成如下：
 		
 			_demo/
 			src/less/ixwpre.less
 			static/images/*.png
 			static/less/ixwpre.less
 
-		其中_demo/可以dev模式下，通过 http://localhost:port/_demo/preview.htm 查看当前已经整合好的
-		图片／背景集以及示例用法，其他文件可被项目代码所使用；
+	其中_demo/可以dev模式下，通过 http://localhost:port/_demo/preview.htm 查看当前已经整合好的
+	图片／背景集以及示例用法，其他文件可被项目代码所使用；
 		
 	5.2 项目生成后可以执行命令以启动项目开发模式, 如：
 			
@@ -80,15 +80,13 @@
 			# npm run lint:prj1； 
 			# npm run lintext:prj1；
 			 
-		其中，lint:prj1 主要为src下的代码提供 eslint 检测，而lintext:prj1则为static下的
-		代码提供检测
+	其中，lint:prj1 主要为src下的代码提供 eslint 检测，而lintext:prj1则为static下的代码提供检测
 			
 	5.4 项目开发完成后，可以通过命令行发布项目, 如: 
 		
 			# npm run release:prj1；
 		
-		发布结果存在于工程组根目录下的prj1/rel目录下，也可以通过修改 prj1/config/index.js 中
-		的release配置自行指定；
+	发布结果存在于工程组根目录下的prj1/rel目录下，也可以通过修改 prj1/config/index.js 中的release配置自行指定；
 
 6. 项目中如需引入额外npm库，可以通过修改framework/env/package.json；项目组根目录下的 package.json 
 	文件是对该文件的引用。一般情况下不要自行改动。
