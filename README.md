@@ -1,12 +1,12 @@
 # 模板说明：
 
-  FPG框架是基于VUE框架制定的多项目工程组框架（Frontend Projects Group framework）；
+  FPG框架是基于VUE框架制定的企业级多项目工程组框架（Frontend Projects Group enterprise framework）；
 
   该框架下项目将基于VUE框架的[Webpack](https://github.com/vuejs-templates/webpack)模版进行改编；
 
 # 使用办法
 
-  1. 下载本模版，假设下载地址为：/home/test/fpg
+  1. 下载本模版，假设下载地址为：/home/coder/fpg
 
   2. 按照如下方式建立新项目组并初始化： 
 
