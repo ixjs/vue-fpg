@@ -49,42 +49,47 @@
 	用(可以参考[项目代码模版中的vue文件](https://github.com/ixjs/vue-fpg/edit/master/template/framework/base/template/src/pages/p2/index.vue))。如存在非公司共享级的代码文件或者需要定制，可以自行复制到
 	各自项目的src目录下进行改编。
 
-4. framework/lib/dom 下的文件为静态共享JS库文件。可以在项目 [index.html](https://github.com/ixjs/vue-fpg/edit/master/template/framework/base/template/index.html)中对其使用相对路
+4. framework/lib/dom 下的文件为静态共享JS库文件。可以在项目[index.html](https://github.com/ixjs/vue-fpg/edit/master/template/framework/base/template/index.html)中对其使用相对路
 	径 env/xxx.js 引用，如下：
 
-	<script data-type="base" type="text/javascript" src="env/base64.min.js"></script>
+		<script data-type="base" type="text/javascript" src="env/base64.min.js"></script>
 
 5. 对任一项目（假设项目目录为prj1），可以在工程组根目录下执行如下相关命令：
 
 	5.1 如有图片／背景集需要整合，可以将相关图片放置于 prj1/_assets 目录下的特定目录中，视情况
-			调整 prj1/config/index.js 中关于 preless 的配置；然后执行整合命令， 如：
-				# npm run preless:prj1
+		调整 prj1/config/index.js 中关于 preless 的配置；然后执行整合命令， 如：
+				
+			# npm run preless:prj1
 		
-			整合将以LESS mixins的方式使用；其结果将生成如下：
-				_demo/
-				src/less/ixwpre.less
-				static/images/*.png
-				static/less/ixwpre.less
-
-			其中_demo/可以dev模式下，通过 http://localhost:port/_demo/preview.htm 查看当前已经整合好的
-			图片／背景集以及示例用法，其他文件可被项目代码所使用；
+		整合将以LESS mixins的方式使用；其结果将生成如下：
 		
-		5.2 项目生成后可以执行命令以启动项目开发模式, 如：
-				# npm run dev:prj1；
+			_demo/
+			src/less/ixwpre.less
+			static/images/*.png
+			static/less/ixwpre.less
 
-		5.3 项目开发提交代码前，可以通过命令行对项目进行代码检查，如：
-				# npm run lint:prj1； 
-				# npm run lintext:prj1；
-			 
-			其中，lint:prj1 主要为src下的代码提供 eslint 检测，而lintext:prj1则为static下的
-			代码提供检测
+		其中_demo/可以dev模式下，通过 http://localhost:port/_demo/preview.htm 查看当前已经整合好的
+		图片／背景集以及示例用法，其他文件可被项目代码所使用；
+		
+	5.2 项目生成后可以执行命令以启动项目开发模式, 如：
 			
-		5.4 项目开发完成后，可以通过命令行发布项目, 如: 
-				# npm run release:prj1；
-		
-			发布结果存在于工程组根目录下的prj1/rel目录下，也可以通过修改 prj1/config/index.js 中
-			的release配置自行指定；
+			# npm run dev:prj1；
 
-	6. 项目中如需引入额外npm库，可以通过修改framework/env/package.json；项目组根目录下的 package.json 
-		文件是对该文件的引用。一般情况下不要自行改动。
+	5.3 项目开发提交代码前，可以通过命令行对项目进行代码检查，如：
+			
+			# npm run lint:prj1； 
+			# npm run lintext:prj1；
+			 
+		其中，lint:prj1 主要为src下的代码提供 eslint 检测，而lintext:prj1则为static下的
+		代码提供检测
+			
+	5.4 项目开发完成后，可以通过命令行发布项目, 如: 
+		
+			# npm run release:prj1；
+		
+		发布结果存在于工程组根目录下的prj1/rel目录下，也可以通过修改 prj1/config/index.js 中
+		的release配置自行指定；
+
+6. 项目中如需引入额外npm库，可以通过修改framework/env/package.json；项目组根目录下的 package.json 
+	文件是对该文件的引用。一般情况下不要自行改动。
 
