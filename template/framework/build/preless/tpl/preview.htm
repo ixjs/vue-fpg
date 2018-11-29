@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>spirite preview{suffix}</title>
+	<link href="less/demo{suffix}.less" rel="stylesheet/less">
+</head>
+<body>
+	<tpl id="bg">
+		<h1>all "{prefix}" background style </h1>
+		<div class="demo_bg_area">
+			<tpl id="list"><div>
+				<h3>.x-{prefix}-{name}</h3>
+				<div class="{prefix}-{name}" style="{info}">{info}</div>
+			</div>
+			</tpl>
+		</div>
+	</tpl>
+	<tpl id="pic">
+		<h1>all "{prefix}" style </h1>
+		<div class="demo_pic_area">
+			<tpl id="list"><div>
+				<h3>.x-{prefix}-{name}</h3>
+				<span class="{prefix}-{name}" style="{info}"></span>
+				<span class="label">{info}</span>
+			</div>
+			</tpl>
+		</div>
+	</tpl>
+
+	<iframe src="./less/demo{suffix}.less" style="height:800px;width:500px;"></iframe>
+</body>
+<script src="./less.min.js"></script>
+</html>

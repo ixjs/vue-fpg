@@ -1,0 +1,10 @@
+{
+  "name": "vue-cli-fpg-template",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "Frontend Framework template for project groups",
+  "author": "Lance <lance_amethyst@hotmail.com>",
+  "devDependencies": {
+    "vue-cli": "^2.8.1"
+  }
+}

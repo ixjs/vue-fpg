@@ -1,0 +1,5 @@
+build/*.js
+config/*.js
+**/assets/bootstrap/js/*.js
+**/static/js/map/map.js
+**/static/services/*.js

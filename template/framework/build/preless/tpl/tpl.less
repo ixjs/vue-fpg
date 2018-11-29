@@ -1,0 +1,16 @@
+<tpl id="pic">.x-{prefix}() {
+	display : inline-block;
+	background-image : url(/static/images/{path}.png);
+	background-repeat: no-repeat;
+}
+<tpl id="list">.x-{prefix}-{name}() {
+	/* {info} */
+	background-position : {xpos} {ypos};
+}
+</tpl>
+</tpl>
+<tpl id="bg"><tpl id="list">.x-{prefix}-{name}() {
+	/* {info} */
+	background : url(data:image/png;base64,{data}) {direct};
+}
+</tpl></tpl>

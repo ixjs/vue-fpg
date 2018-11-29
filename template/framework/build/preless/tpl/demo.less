@@ -1,0 +1,45 @@
+@import "ixwpre{suffix}";
+
+@x-bg-color:rgba(127,127,127, 0.5);
+
+body {width:100%; height:100%;}
+h1 {
+	float:left;
+	width:630px;
+	margin: 10px 0 5px;
+	border-bottom:3px solid #666; 
+}
+h3 {
+	height:20px; 
+	font-size:12px; 
+	font-weight:bold;
+	border-bottom:3px solid #966; 
+	margin:0 0 2px;
+}
+body>div {
+	float:left;display:block; 
+	min-width:260px;
+	max-width:630px;
+	margin:5px 5px 5px 0; padding:3px 3px 3px 0; 
+	border:3px solid @x-bg-color; 
+	background:@x-bg-color;
+	font-size:12px;
+}
+body>div>div {margin:10px 5px;float:left; width:200px;min-height:54px;}
+body>.demo_pic_area>div {float:left; width:200px;}
+div span{
+	display:inline-block;
+	height:1.2em; 
+	margin:1px 2px; 
+	vertical-align:top;
+}
+div .label {float:right;}
+
+.demo_bg_area>div>div {width:100%; height:16px;}
+
+<tpl id="pic">
+[class^="{prefix}"], [class*=" {prefix}"] {.x-{prefix};}
+<tpl id="list">.{prefix}-{name} {{info} .x-{prefix}-{name};}
+</tpl></tpl>
+<tpl id="bg"><tpl id="list">.{prefix}-{name} {{info} .x-{prefix}-{name};}
+</tpl></tpl>

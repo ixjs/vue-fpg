@@ -1,0 +1,9 @@
+{
+  "name": "vue-cli-fpg-project-template-for-webpack",
+  "version": "1.0.0",
+  "license": "MIT",
+  "description": "基于VUE框架制定的多项目框架（FPG）下的子项目模板，基于https://github.com/vuejs-templates/webpack",
+  "devDependencies": {
+    "vue-cli": "^2.8.1"
+  }
+}
