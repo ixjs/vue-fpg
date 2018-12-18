@@ -107,7 +107,7 @@ function parserIndexFile(entryFile, srcDir, targetDir, cbFn) {
 	IX.iterate(doc.getElementsByTagName('link'), iterateLinkTag);
 
 	var newHTML = dom.serialize();
-	newHTML = newHTML.replace(/<script aux=''><\/script>/g, '');
+	newHTML = newHTML.replace(/<script aux=""><\/script>/g, '');
 	newHTML = newHTML.replace(/\t|\n/g, '');
 
 	IX.iterate(jsFiles.getKeys(), function (key) {

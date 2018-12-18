@@ -24,13 +24,13 @@ module.exports = {
 		//  path: 'cn' // default is 'pic'
 		}]
 	},
-	map: {
-		target: resolve('static/js/map/map.js'),
-		scale: 600,
-		includeChinaMap: true,
-		// includeCities: false,
-		provinces: 'all' // '青海,山西,...'
-	},
+	// map: {
+	// 	target: resolve('static/js/map/map.js'),
+	// 	scale: 600,
+	// 	includeChinaMap: true,
+	// 	// includeCities: false,
+	// 	provinces: 'all' // '青海,山西,...'
+	// },
 	dev: {
 		env: { NODE_ENV: '"development"' },
 		port: {{port}},

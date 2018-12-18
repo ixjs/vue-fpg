@@ -29,7 +29,8 @@ $ git commit -m "initialize framework"
 
 ``` bash
 $ mkdir my-group-dir
-$ git clone framework-repo-url
+$ cd my-group-dir
+$ git clone repo-url/framework.git
 $ sh framework/init.sh
 ```
 
