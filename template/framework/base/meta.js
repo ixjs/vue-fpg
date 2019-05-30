@@ -38,5 +38,5 @@ module.exports = {
     }
   },
   "skipInterpolation": "src/**/*.vue",
-  "completeMessage": "To get started:\n\n\tcd {{ destDirName }}\n\tnpm run dev\n\n"
+  "completeMessage": "To get started:\n\n\tnpm run dev:{{ name }}\n\n"
 };
