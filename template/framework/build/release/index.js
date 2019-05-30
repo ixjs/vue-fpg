@@ -43,6 +43,8 @@ function parserIndexFile(entryFile, srcDir, targetDir, cbFn) {
 		if (IX.isEmpty(targetName)) {
 			if (!isContent)
 				jsFiles.put(filepath, { type: 'copy', value: realFilepath });
+			if (filepath && filepath.substring(0,1) == '/')
+				tag.setAttribute('src', filepath.substring(1));	
 			console.log('\treserved:', filepath);
 			return;
 		}
@@ -67,10 +69,13 @@ function parserIndexFile(entryFile, srcDir, targetDir, cbFn) {
 		console.log('Link:\t\t', tag.outerHTML);
 
 		var rel = tag.getAttribute('rel');
-		if (IX.isEmpty(rel) || rel == 'stylesheet' || rel == 'shortcut icon')
-			return;
-
 		var filepath = tag.getAttribute('href');
+		if (IX.isEmpty(rel) || rel == 'stylesheet' || rel == 'shortcut icon') {
+			if (filepath && filepath.substring(0, 1) == '/')
+				tag.setAttribute('href', filepath.substring(1));
+			return;
+		}
+
 		var targetFilePath = filepath.replace(/less/g, 'css');
 		var srcFile = path.join(srcDir, filepath);
 		var targetFile = path.join(targetDir, targetFilePath);
@@ -97,7 +102,6 @@ function parserIndexFile(entryFile, srcDir, targetDir, cbFn) {
 			var content = item.type == 'content' ? item.value : fs.readFileSync(item.value);
 			fs.appendFileSync(filepath, content + '\n');
 		});
-
 		return rename4MD5(filepath, key, '.js');
 	}
 
