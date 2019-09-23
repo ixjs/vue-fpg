@@ -48,6 +48,10 @@ $ git commit -m "initialize project"
 
   此命令将在项目组目录下创建项目专属目录，如该目录已经存在，则不会继续创建
 
-#其他
+# 其他
 
   更多可见框架安装完成后的说明文件： [framework/README.md](https://github.com/ixjs/vue-fpg/blob/master/template/framework/README.md)
+
+# 升级
+
+	2019-9-23  V1.1.0 提供快速项目开发能力： [framework/UPGRADE.md](https://github.com/ixjs/vue-fpg/blob/master/template/framework/UPGRADE.md#2019-9-23)
