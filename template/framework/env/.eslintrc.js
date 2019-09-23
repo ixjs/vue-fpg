@@ -67,6 +67,7 @@ module.exports = {
 		'object-property-newline': 0,
 		'default-case': 0,
 
+		'import/no-extraneous-dependencies' : 0,
 		'import/no-dynamic-require' : 0,
 		'arrow-body-style': ['error', 'always'],
 

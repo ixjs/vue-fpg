@@ -9,13 +9,13 @@ IXW.ns = function (subNS) {
 	return IX.ns([PRJ_NS].concat(subNS).join('.'));
 };
 
-IXW.dup = function(obj) {
+IXW.dup = function (obj) {
 	return JSON.parse(JSON.stringify(obj));
 };
 
-IXW.iterTree = function(items, fn) {
+IXW.iterTree = function (items, fn) {
 	function iterFn(_items) {
-		IX.iterate(_items, function(item) {
+		IX.iterate(_items, function (item) {
 			fn(item);
 			iterFn(item.children || []);
 		});
@@ -85,10 +85,10 @@ IXW.onmousewheel = function (el, fn) {
 			// var deltaY = evt.detail * 10;
 			fn({ dx: 0, dy: evt.detail * 10 });
 		}, false);
-    el.onmousewheel = function (event) {
+	el.onmousewheel = function (event) {
 		var evt = event || window.event;
 		fn({ dx: evt.wheelDeltaX / 10, dy: evt.wheelDeltaY / 10 });
-    };
+	};
 };
 
 var fnHT = {};
