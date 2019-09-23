@@ -10,7 +10,7 @@ then
 fi
 
 echo "Under '${ROOTDIR}', try create new project $1...\n\n";
- cd $ROOTDIR
+cd $ROOTDIR
 
 if [[ -d $ROOTDIR/$1 ]]
 then
@@ -18,5 +18,6 @@ then
 else
 	echo "Start to create for $1 \n vue init $ROOTDIR/base $1"
 	vue init $ROOTDIR/framework/base $1
-	node $BASEDIR/bin/create-extra.js $1
 fi
+
+node $BASEDIR/bin/create-extra.js $1

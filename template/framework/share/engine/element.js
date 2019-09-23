@@ -12,11 +12,11 @@ import {
 	MenuItem,
 	MenuItemGroup,
 	Input,
-	// InputNumber,
+	InputNumber,
 	// Radio,
 	// RadioGroup,
 	// RadioButton,
-	// Checkbox,
+	Checkbox,
 	// CheckboxButton,
 	// CheckboxGroup,
 	// Switch,
@@ -25,8 +25,8 @@ import {
 	// OptionGroup,
 	Button,
 	// ButtonGroup,
-	// Table,
-	// TableColumn,
+	Table,
+	TableColumn,
 	DatePicker,
 	// TimeSelect,
 	// TimePicker,
@@ -35,7 +35,7 @@ import {
 	// Breadcrumb,
 	// BreadcrumbItem,
 	Form,
-	FormItem
+	FormItem,
 	// Tabs,
 	// TabPane,
 	// Tag,
@@ -59,15 +59,15 @@ import {
 	// Cascader,
 	// ColorPicker,
 	// Transfer,
-	// Container,
-	// Header,
-	// Aside,
-	// Main,
-	// Footer,
+	Container,
+	Header,
+	Aside,
+	Main,
+	Footer,
 	// Loading,
-	// MessageBox,
-	// Message,
-	// Notification
+	MessageBox,
+	Message,
+	Notification
 } from 'element-ui';
 
 let Vue = null;
@@ -86,11 +86,11 @@ nsELE.init = function (vue) {
 	Vue.use(MenuItem);
 	Vue.use(MenuItemGroup);
 	Vue.use(Input);
-	// Vue.use(InputNumber);
+	Vue.use(InputNumber);
 	// Vue.use(Radio);
 	// Vue.use(RadioGroup);
 	// Vue.use(RadioButton);
-	// Vue.use(Checkbox);
+	Vue.use(Checkbox);
 	// Vue.use(CheckboxButton);
 	// Vue.use(CheckboxGroup);
 	// Vue.use(Switch);
@@ -99,8 +99,8 @@ nsELE.init = function (vue) {
 	// Vue.use(OptionGroup);
 	Vue.use(Button);
 	// Vue.use(ButtonGroup);
-	// Vue.use(Table);
-	// Vue.use(TableColumn);
+	Vue.use(Table);
+	Vue.use(TableColumn);
 	Vue.use(DatePicker);
 	// Vue.use(TimeSelect);
 	// Vue.use(TimePicker);
@@ -132,19 +132,19 @@ nsELE.init = function (vue) {
 	// Vue.use(CollapseItem);
 	// Vue.use(Cascader);
 	// Vue.use(ColorPicker);
-	// Vue.use(Container);
-	// Vue.use(Header);
-	// Vue.use(Aside);
-	// Vue.use(Main);
-	// Vue.use(Footer);
+	Vue.use(Container);
+	Vue.use(Header);
+	Vue.use(Aside);
+	Vue.use(Main);
+	Vue.use(Footer);
 
 	// Vue.use(Loading.directive);
 
 	// nsELE.loading = Loading.service;
 	// nsELE.msgbox = MessageBox;
-	// nsELE.alert = MessageBox.alert;
-	// nsELE.confirm = MessageBox.confirm;
-	// nsELE.prompt = MessageBox.prompt;
-	// nsELE.notify = Notification;
-	// nsELE.message = Message;
+	nsELE.alert = MessageBox.alert;
+	nsELE.confirm = MessageBox.confirm;
+	nsELE.prompt = MessageBox.prompt;
+	nsELE.notify = Notification;
+	nsELE.message = Message;
 };

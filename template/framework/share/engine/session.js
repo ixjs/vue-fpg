@@ -24,23 +24,23 @@ var sessionFactory = IXW.ns('SessionFactory');
 sessionFactory.register = function (clz) {
 	if (IX.isFn(clz)) sessionClz = clz;
 };
-// sessionFactory.listen = function (evtName, fn) {
-// 	if (evtName != 'init' && evtName != 'clear')
-// 		return;
-// 	var listeners = evtName == 'init' ? initListeners : clearListeners;
-// 	listeners.push(fn);
-// };
-// sessionFactory.unlisten = function (evtName) {
-// 	if (evtName != 'init' && evtName != 'clear')
-// 		return;
-// 	if (evtName == 'init')
-// 		initListeners = [];
-// 	else 
-// 		clearListeners = [];
-// };
+sessionFactory.listen = function (evtName, fn) {
+	if (evtName != 'init' && evtName != 'clear')
+		return;
+	var listeners = evtName == 'init' ? initListeners : clearListeners;
+	listeners.push(fn);
+};
+sessionFactory.unlisten = function (evtName) {
+	if (evtName != 'init' && evtName != 'clear')
+		return;
+	if (evtName == 'init')
+		initListeners = [];
+	else 
+		clearListeners = [];
+};
 
 sessionFactory.getInstance = function () { return session; };
-// sessionFactory.resetSession = function (data) { newInstance(data); };
+sessionFactory.resetSession = function (data) { newInstance(data); };
 
 function doClear(cbFn) {
 	clearInstance();
@@ -48,8 +48,8 @@ function doClear(cbFn) {
 }
 sessionFactory.loadSession = function (cbFn) {
 	// 判断有没有token, 如果有，才会请求session接口
-	// if ( !serviceFactory.getToken()) 
-	// 	return doClear(cbFn);
+	if (!serviceFactory.getToken()) 
+		return doClear(cbFn);
 	serviceFactory.loginService('session', {}, function (data) {
 		newInstance(data);
 		cbFn(session);
@@ -57,8 +57,8 @@ sessionFactory.loadSession = function (cbFn) {
 		doClear(cbFn);
 	});	
 };
-// sessionFactory.clearSession = function (cbFn) {
-// 	serviceFactory.loginService('logout', {}, function () {
-// 		doClear(cbFn);
-// 	});
-// };
+sessionFactory.clearSession = function (cbFn) {
+	serviceFactory.loginService('logout', {}, function () {
+		doClear(cbFn);
+	});
+};

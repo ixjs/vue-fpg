@@ -1,5 +1,5 @@
 // see http://vuejs-templates.github.io/webpack for documentation.
-var path = require('path')
+var path = require('path');
 
 function resolve(dir) { return path.join(__dirname, '..', dir); }
 
@@ -12,8 +12,8 @@ module.exports = {
 		imgDest: resolve('static'),
 		demoDest: resolve('_demo'),
 		background: [{
-		 // classPrefix: 'bg',  // css Class prefix, default is bg
-		 // path: 'background'  // the directory for the source files relative to srcRoot
+		// classPrefix: 'bg',  // css Class prefix, default is bg
+		// path: 'background'  // the directory for the source files relative to srcRoot
 		}],
 		picmap: [{
 			// margin: 8, // margin for each images in spirit file, default is 8
@@ -33,12 +33,19 @@ module.exports = {
 	// },
 	dev: {
 		env: { NODE_ENV: '"development"' },
-		port: {{port}},
+		port: '{{port}}',
 		autoOpenBrowser: true,
 		assetsSubDirectory: 'static',
 		assetsDemoDirectory: '_demo',
 		assetsPublicPath: '/',
-		proxyTable: {},
+		proxyTable: {
+			// '/api': {
+			// 	target: 'http://server.com',
+			// 	pathRewrite: {
+			// 		'^/api': '/'
+			// 	}
+			// }
+		},
 		// CSS Sourcemaps off by default because relative paths are 'buggy'
 		// with this option, according to the CSS-Loader README
 		// (https://github.com/webpack/css-loader#sourcemaps)

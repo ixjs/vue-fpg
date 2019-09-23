@@ -3,13 +3,13 @@
 		<span>{{desc}}</span>
 
 		<sample />
-		<{{ ns }}-sample />
+		<ns-sample />
 	</div>
 </template>
 
 <script>
 import sample from '@/components/sample';
-import {{ ns }}Sample from 'components/{{ ns }}Sample';
+import nsSample from 'components/nsSample';
 
 // var serviceFactory = IXW.ns('serviceFactory');
 // serviceFactory.loginService("login", {}, function(data){
@@ -27,13 +27,13 @@ export default {
 	},
 	components: {
 		sample,
-		{{ ns }}Sample
+		nsSample
 	}
 };
 </script>
 
 <style lang='less'>
 .p1{
-	.{{ ns }}-sample { background: red; }
+	.ns-sample { background: red; }
 }
 </style>

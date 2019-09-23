@@ -2,7 +2,7 @@
 	<div class="p2">
 		<span>{{desc}}</span>
 		<biz-example />
-		<{{ ns }}-biz-sample />
+		<ns-biz-sample />
 
 		<router-view></router-view>
 	</div>
@@ -10,7 +10,7 @@
 
 <script>
 import BizExample from '@/biz-components/example';
-import {{ ns }}BizSample from 'biz-components/{{ ns }}BizSample';
+import nsBizSample from 'biz-components/nsBizSample';
 
 export default {
 	name: 'samplePage2',
@@ -21,13 +21,13 @@ export default {
 	},
 	components: {
 		BizExample,
-		{{ ns }}BizSample
+		nsBizSample
 	}
 };
 </script>
 
 <style lang='less'>
 .p2{
-	.{{ ns }}-biz-sample { background: green; }
+	.ns-biz-sample { background: green; }
 }
 </style>

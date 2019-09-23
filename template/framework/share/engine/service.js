@@ -9,16 +9,17 @@ var Vue = null;
 var commonFailFn = IX.emptyFn;
 var isInitialized = false;
 var serviceToken = null;
+var ServiceTokenName = IXW.Service.SeriveToken || 'x-token';
 
 function getToken() {
-	serviceToken = localStorage['service-token'] || null;
+	serviceToken = localStorage[ServiceTokenName] || null;
 }
 function setToken(token) {
-	localStorage['service-token'] = token;
+	localStorage[ServiceTokenName] = token;
 	serviceToken = token;
 }
 function clearToken() {
-	localStorage['service-token'] = '';
+	localStorage[ServiceTokenName] = '';
 	serviceToken = null;
 }
 

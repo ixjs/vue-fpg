@@ -11,8 +11,15 @@ var destStr = [
 	'"release:newprj": "node framework/build/release.js newprj"',
 	'"lint:newprj": "eslint -c newprj/.eslintrc.js --ext .js,.vue newprj/src"',
 	'"lintext:newprj": "eslint -c newprj/.eslintrc.js --ext .js newprj/static"'
-].join(',\n\t\t') + ',\n\n\t\t' + anchorStr;
+].join(',\n\t\t') + ',\n\t\t' + anchorStr;
 
 var pkgFile = utils.$resolve('env/package.json');
-fs.writeFileSync(pkgFile, 
-		fs.readFileSync(pkgFile, 'utf8').replace(anchorStr, destStr.replace(/newprj/g, prjName)));
+var content = fs.readFileSync(pkgFile, 'utf8');
+if (content.indexOf('"dev:' + prjName + '"') >= 0) 
+	console.log('Project "' + prjName + '" scripts already applied!');
+else {
+	console.log('Appying scripts for Project "' + prjName + '" ...');
+	destStr = destStr.replace(/newprj/g, prjName);
+	fs.writeFileSync(pkgFile, content.replace(anchorStr, destStr));
+	console.log('Appying done');
+}

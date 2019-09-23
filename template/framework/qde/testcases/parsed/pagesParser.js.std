@@ -1,0 +1,272 @@
+module.exports = { 
+	'engines': {
+routers: [
+	{ name: 'cdt', hasRouterKey: true, children: '' },
+	{ name: 'cdi', hasRouterKey: true, children: '' },
+	{ name: 'sys', hasRouterKey: false, children: '\'org\', \'setting\'' }
+],
+privs: [
+	{ id: 1, pId: 0, title: '客户数据类型管理', name: 'cdt', fullname: 'cdt', type: 'nav', idx: 1 },
+	{ id: 2, pId: 0, title: '客户数据管理', name: 'cdi', fullname: 'cdi', type: 'nav', idx: 2 },
+	{ id: 3, pId: 0, title: '系统管理', name: 'sys', fullname: 'sys', type: 'nav', idx: 3 },
+	{ id: 4, pId: 3, title: '组织结构管理查看', name: 'org', fullname: 'sys-org', type: 'nav', idx: 4 },
+	{ id: 5, pId: 3, title: '配置管理', name: 'setting', fullname: 'sys-setting', type: 'nav', idx: 5 }
+],
+treePrivs: [
+	{ name: 'sys-org', pname: 'sys' },
+	{ name: 'sys-setting', pname: 'sys' }
+]
+	},
+	apis: [ 
+		{ name: 'getFuncActived', reqStrs: 'id', rspStrs: 'id,actived' },
+    	{ name: 'setFuncActived', reqStrs: 'id,actived', rspStrs: ''} ],
+	'pages': [
+{ type: 'page', path: 'cdt/index', cfg: {
+	name: 'CdtPage'
+	,tag: 'cdt'
+	,layoutType: 'default'
+	,lsideCmp: 'orgTree'
+	,titlebar: '《{{routeKey.name}}》的客户数据类型管理'
+	,bizCmpName: 'spCdtLink'
+	,bizCmpTag: 'sp-cdt-link'
+	,encodeRouteKey: true
+	,useRouteKey: true
+	,mixins: ['routeKeyEncode', 'routeKeyDecode']
+	,useSelectedItem: false
+	,toPageName: 'cdt'
+	,toPageAttrs: 'id+name'
+} }, { type: 'page', path: 'cdi/index', cfg: {
+	name: 'CdiPage'
+	,tag: 'cdi'
+	,layoutType: 'default'
+	,lsideCmp: 'cdtypeTree'
+	,titlebar: '《{{routeKey.name}}》的客户数据管理'
+	,bizCmpName: 'spCdiLink'
+	,bizCmpTag: 'sp-cdi-link'
+	,encodeRouteKey: true
+	,useRouteKey: true
+	,mixins: ['routeKeyEncode', 'routeKeyDecode']
+	,useSelectedItem: false
+	,toPageName: 'cdi'
+	,toPageAttrs: 'id+name'
+} }, { type: 'route', path: 'sys/index', cfg: {
+	name: 'SysPage'
+} }, { type: 'page', path: 'sys/org', cfg: {
+	name: 'SysOrgPage'
+	,tag: 'sys-org'
+	,layoutType: 'default'
+	,lsideCmp: null
+	,titlebar: null
+	,bizCmpName: 'spSysOrgLink'
+	,bizCmpTag: 'sp-sys-org-link'
+	,encodeRouteKey: false
+	,useRouteKey: false
+	,mixins: []
+	,useSelectedItem: false
+	,toPageName: null
+	,toPageAttrs: ''
+} }, { type: 'page', path: 'sys/setting', cfg: {
+	name: 'SysSettingPage'
+	,tag: 'sys-setting'
+	,layoutType: 'default'
+	,lsideCmp: 'funcList'
+	,titlebar: '配置管理 : <i>{{ selectedItem && selectedItem.name }}</i>'
+	,bizCmpName: 'spSysSettingForm'
+	,bizCmpTag: 'sp-sys-setting-form'
+	,encodeRouteKey: false
+	,useRouteKey: false
+	,mixins: []
+	,useSelectedItem: true
+	,toPageName: null
+	,toPageAttrs: ''
+} }
+	]  ,
+	'bizCmps': [
+{ name: 'spCdtLink', type: 'link', cfg: { 
+	cmpName: 'spCdtLink',
+	isVertical: true,
+	deliveryKeys: null,
+	useSelectedItem: true,
+	deliverToParent: false,
+	mixins: ['selectedMixin'],
+	masterCmp: 'spCdtMLink',
+	defSlaveCmp: 'spCdtSGrid',
+	slaveCmps: [{ type: 'form', name: 'spCdtSForm' }]
+} }, { name: 'spCdtMLink', type: 'link', cfg: { 
+	cmpName: 'spCdtMLink',
+	isVertical: true,
+	deliveryKeys: 'key,owner',
+	useSelectedItem: true,
+	deliverToParent: true,
+	mixins: ['selectedMixin', 'masterMixin'],
+	masterCmp: 'spCdtMMForm',
+	defSlaveCmp: 'spCdtMSGrid',
+	slaveCmps: []
+} }, { name: 'spCdiLink', type: 'link', cfg: { 
+	cmpName: 'spCdiLink',
+	isVertical: false,
+	deliveryKeys: '-',
+	useSelectedItem: true,
+	deliverToParent: false,
+	mixins: ['selectedMixin'],
+	masterCmp: 'spCdiMForm',
+	defSlaveCmp: 'spCdiSGrid',
+	slaveCmps: []
+} }, { name: 'spSysOrgLink', type: 'link', cfg: { 
+	cmpName: 'spSysOrgLink',
+	isVertical: true,
+	deliveryKeys: null,
+	useSelectedItem: false,
+	deliverToParent: false,
+	mixins: [],
+	masterCmp: 'spSysOrgMGrid',
+	defSlaveCmp: 'spSysOrgSGrid',
+	slaveCmps: []
+
+} }, { name: 'spCdtMSGrid', type: 'grid', cfg: { 
+	cmpName: 'spCdtMSGrid',
+	entityName: 'CDType',
+	entityAttrs: '',
+	disableAutoLoad: true,
+	hasPagination: false,
+	useSelectedItem: true,
+	mixins: ['selectedMixin', 'masterMixin', 'slaveMixin'],
+	defTrigger: 'org,owner,desc',
+	triggers: [{ type: 'form', capitalizeType: 'Form', cols: 'name' }],
+	apiParamsSentences: [
+		'orgId: $XP(this.selectedItem, \'id\', null)',
+		'key: $XP(this.delivery, \'key\', null)',
+		'owner: $XP(this.delivery, \'owner\', null)'
+	]
+} }, { name: 'spCdtSGrid', type: 'grid', cfg: { 
+	cmpName: 'spCdtSGrid',
+	entityName: 'CDItem',
+	entityAttrs: '',
+	disableAutoLoad: true,
+	hasPagination: false,
+	useSelectedItem: false,
+	mixins: ['slaveMixin'],
+	defTrigger: '',
+	triggers: [],
+	apiParamsSentences: [
+		'cdtId: $XP(this.delivery, \'id\', null)'
+	]
+} }, { name: 'spCdiSGrid', type: 'grid', cfg: { 
+	cmpName: 'spCdiSGrid',
+	entityName: 'CDItem',
+	entityAttrs: '',
+	disableAutoLoad: false,
+	hasPagination: false,
+	useSelectedItem: true,
+	mixins: ['selectedMixin'],
+	defTrigger: '',
+	triggers: [],
+	apiParamsSentences: [
+		'cdtId: $XP(this.selectedItem, \'id\', null)'
+	]
+} }, { name: 'spSysOrgMGrid', type: 'grid', cfg: { 
+	cmpName: 'spSysOrgMGrid',
+	entityName: 'Org',
+	entityAttrs: ' buttons=\'-\' actions=\'-\'',
+	disableAutoLoad: false,
+	hasPagination: false,
+	useSelectedItem: false,
+	mixins: ['masterMixin'],
+	defTrigger: 'name,type',
+	triggers: [],
+	apiParamsSentences: []
+} }, { name: 'spSysOrgSGrid', type: 'grid', cfg: { 
+	cmpName: 'spSysOrgSGrid',
+	entityName: 'User',
+	entityAttrs: ' buttons=\'-\' actions=\'-\'',
+	disableAutoLoad: true,
+	hasPagination: true,
+	useSelectedItem: false,
+	mixins: ['slaveMixin'],
+	defTrigger: '',
+	triggers: [],
+	apiParamsSentences: [
+		'orgId: $XP(this.delivery, \'id\', null)'
+	]
+} }, { name: 'spCdtMMForm', type: 'form', cfg: { 
+	cmpName: 'spCdtMMForm',
+	mixins: ['masterMixin'],
+	isCompactForm: true,
+	formType: 'base',
+	entityName: '',
+	entityId: '',
+	autoSubmit: true, 
+	submitMethod: 'deliver',
+	callService: false,
+	useSelectedItem: false,
+	selectedTrigger: false,
+	keyFieldName: 'key',
+	dataItems: '{\n\t\t\t\'form\': {\n\t\t\t\t\'key\': \'\',\n\t\t\t\t\'owner\': null\n\t\t\t},\n\t\t\t\'fields\': [\n\t\t\t\t{ \'name\': \'key\', \'label\': \'关键字\', \'tip\': \'请输入查询关键字\' },\n\t\t\t\t{ \'name\': \'owner\', \'label\': \'管理员\', \'type\': \'ENT:User\', \'tip\': \'根据管理员筛选查询\' }\n\t\t\t],\n\t\t\t\'btns\': []\n\t\t}',
+	methods: []
+} }, { name: 'spCdtSForm', type: 'form', cfg: { 
+	cmpName: 'spCdtSForm',
+	mixins: ['slaveMixin'],
+	isCompactForm: true,
+	formType: 'entity',
+	entityName: 'CDType',
+	entityId: 'delivery.id',
+	autoSubmit: false,
+	submitMethod: 'submit',
+	callService: false,
+	useSelectedItem: false,
+	selectedTrigger: false,
+	keyFieldName: null,
+	dataItems: null,
+	methods: []	
+} }, { name: 'spCdiMForm', type: 'form', cfg: { 
+	cmpName: 'spCdiMForm',
+	mixins: ['selectedMixin'],
+	isCompactForm: true,
+	formType: 'entity',
+	entityName: 'CDType',
+	entityId: 'selectedItem.id',
+	autoSubmit: false,
+	submitMethod: 'submit',
+	callService: false,
+	useSelectedItem: true,
+	selectedTrigger: false,
+	keyFieldName: null,
+	dataItems: null,
+	methods: []	
+} }, { name: 'spSysSettingForm', type: 'form', cfg: { 
+	cmpName: 'spSysSettingForm',
+	mixins: ['selectedMixin'],
+	isCompactForm: false,
+	formType: 'base',
+	entityName: '',
+	entityId: '',
+	autoSubmit: false,
+	submitMethod: 'submit',
+	callService: true,
+	useSelectedItem: true,
+	selectedTrigger: true,
+	keyFieldName: 'name',
+	dataItems: '{\n\t\t\t\'form\': {\n\t\t\t\t\'name\': null,\n\t\t\t\t\'actived\': false\n\t\t\t},\n\t\t\t\'fields\': [\n\t\t\t\t{ \'name\': \'name\', \'label\': \'功能项\', \'disabled\': true },\n\t\t\t\t{ \'name\': \'actived\', \'label\': \'是否启用\', \'type\': \'bool\' }\n\t\t\t],\n\t\t\t\'btns\': [{ \'name\': \'submit\', \'text\': \'确认\' }]\n\t\t}',
+	methods: [ {
+		name: 'submit',
+		apiName: 'setFuncActived',
+		apiParams: [
+			'\'id\': this.selectedItem.id',
+			'\'actived\': this.form.actived'
+		],
+		namedRsp: '',
+		rspSentences: []
+	}, {
+		name: 'load',
+		apiName: 'getFuncActived',
+		apiParams: [
+			'\'id\': this.selectedItem.id'
+		],
+		namedRsp: 'data',
+		rspSentences: [
+			'this.form.name = this.selectedItem.name',
+			'this.form.actived = data.actived'
+		]
+	}]
+} } ]
+};

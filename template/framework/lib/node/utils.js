@@ -1,9 +1,17 @@
-var path = require('path');
 var fs = require('fs');
+var path = require('path');
+var util = require('util');
 var childProcess = require('child_process');
 require('./ix');
 
-exports.execCmd = function (cmd) {
+exports.inspect = (data) => {
+	return util.inspect(data, { depth: null, breakLength: 100 });
+};
+exports.dup = (obj) => {
+	return JSON.parse(JSON.stringify(obj));
+};
+
+exports.execCmd = (cmd) => {
 	// console.log("EXEC: ", cmd);
 	childProcess.execSync(cmd);
 };

@@ -1,0 +1,251 @@
+[[ConfigurationFileContent]]			# 配置文件内容格式描述：	
+module.exports = @ProjectDefinition;	# 引用《项目配置定义》
+
+=
+《项目配置定义》: ProjectDefinition => {
+	name: String,					# 项目名称, 如: 'cdd'
+	fullname: String,				# 项目全名, 如: '客户数据管理系统'
+	codeTables: Array<@CodeTable>,	# 定义项目用到的码表, 引用《码表定义》
+	entities: Array<@Entity>,		# 定义项目用到的信息实体, 引用《实体定义》
+	confiurations: Array<@Config>,	# 定义项目用到的局部定义块, 引用《局部配置定义》
+	navs: Array<@NavItem>,			# 定义项目展示的顶部导航栏结构, 引用《主导航条目定义》
+	sideNavs: Array<@SideNavItem>,	# 定义项目的侧边导航栏结构, 引用《侧导航条目定义》
+	pages: Array<@Page>,			# 定义项目展示的页面结构, 引用《页面定义》
+	simData: @SimData				# 定义项目展示的模拟数据, 引用《模拟数据定义》
+}
+
+== 1
+《码表定义》: CodeTable => {
+	name: String,			# 码表名称, 如: 'OrgType'
+	label: String,			# 码表显示名称, 如: '组织类型'
+	values: Array<@CTItem>	# 码表值描述结构, 引用《码表条目定义》
+}
+
+=== 1.1
+《码表条目定义》: CTItem => {
+	label: String,			# 码表条目的显示名称（码名）, 如: '省部级'
+	value: String			# 码表条目的值属性（码值），如: 'male', 1, false
+		| Integer 
+		| Boolean
+}
+
+== 2
+《实体定义》: Entity => {
+	name: String,			# 实体名称, 如: 'Org'
+	label: String,			# 实体显示名称, 如: '组织'
+	columns: Array<@EntCol>,# 实体属性描述结构, 引用《实体属性定义》
+	selectCmp: 'base' 		# 对应选择器属性可以简洁描述: 'base': 基本列表型选择;
+		| 'tree'			#		或者'tree'(树型选择)
+		| @SelectCmp,		# 		或者使用结构表述，引用《选择器属性定义》
+	treeAttr: String		# 树形数据结构的特殊字段，用来描述父节点的属性名，如: 'parentId'
+}
+
+=== 2.1
+# id属性是每个实体必备的属性，不需要声明，其类型必需是String或者Integer类型
+# name属性虽也是必备属性，必须声明其label属性，类型必然是String类型
+# 这里只需列出用于表格/表单展示的属性定义
+《实体属性定义》: EntCol => {	
+	name: String,				# 实体属性名称, 如: 'addr'
+	label: String,				# 实体属性的显示名称, 如: '地址'
+	type: 'string' 				# 实体属性的值类型；缺省数据类型，字符串类型，直接显示，用input控件输入
+		| 'text'				# 	长文本类型，直接显示，用textarea控件输入
+		| 'password'			# 	密码文本类型，不直接显示，用password控件输入
+		| 'bool'				# 	布尔类型，直接显示，用Checkbox空间输入
+		| 'number'				# 	数字类型，直接显示，用input控件输入
+		| 'CT:@CodeTable.name'	# 	码表引用类型，存储的是码值，显示的是码名，调用自动生成的码表选择器输入
+		| 'ENT:@Entity.name'	# 	实体引用类型，存储的是id，显示的是name字段，调用自动生成的实体选择其输入
+}
+
+=== 2.2
+《选择器属性定义》: SelectCmp => {
+	base: 'base' 	# 选择器表现类型，只能是'base'(基本列表型选择) 
+		| 'tree',	# 		或者'tree'(树型)
+	apiName: String # 选择器数据加载Api,默认是'get{{@Entity.name}}s4Select'
+}
+
+== 3
+《局部配置定义》: Config => {
+	name: String, 	# 配置项名称
+	type: String,	# 配置项类型，缺省为'biz'(业务组件), 可以省略；目前只支持'biz'类型
+	cfg: @BizCmp	# 配置项声明，对应'biz'，引用《业务组件定义》
+}
+
+=== 3.1
+# 业务组件作为页面的组装部件，目前支持三种业务组件定义
+《业务组件定义》: BizCmp => 
+	@BizLinkCmp		# 引用《关联组件类型》，
+	| @BizGridCmp	# 引用《表格组件类型》，
+	| @BizFormCmp	# 引用《表单组件类型》
+
+==== 3.1.1
+《关联组件类型》: BizLinkCmp => {
+	type: 'ms-linkage',			# 固定值字段，必须声明，
+	layout: 'vertical'			# 关联组件布局，主从布局以纵向排布，上主下从，缺省定义
+		| 'horizon',			#		横向布局，左主右从	
+	master: @BizCmp  			# 主组件声明，可以是《业务组件定义》（name将自动扩展），
+		| 'CFG:@Config.name',	# 		也可以是已定义的业务组件名称
+	delivery: String,			# 主组件向从组件发送的对象属性，缺省为'id',此时可以省略；
+								#		否则需要指定，如: 'key,org'；如果不想传递对象，值为'-'
+	slave: @BizCmp  			# 从组件声明，可以是《业务组件定义》（name将自动扩展）,
+		| 'CFG:@Config.name'	# 		也可以是已定义的业务组件名称
+		| @MultiSlave			#		如果关联多个从组件，引用《多从组件定义》
+}
+
+===== 3.1.1.1
+《多从组件定义》: MultiSlave => {
+	'default': @BizCmp 			# 必需存在且定义，值可以是《业务组件定义》也可以是已定义的业务组件名称
+		| 'CFG:@Config.name'	#		主组件抛出的未指定接收方的对象，默认指向此从组件
+	'$Named' : @BizCmp 			# 可以有多项，$Named 为自定义的从组件编码
+		| 'CFG:@Config.name'	#		值可以是《业务组件定义》也可以是已定义的业务组件名称
+}
+
+==== 3.1.2
+《表格组件类型》: BizGridCmp => {
+	type: 'grid',				# 固定值字段，必须声明，
+	entityName: '@Entity.name',	# 关联实体名称
+	buttons: String,			# 对实体附加的操作，缺省为'add,removeAll',可忽略;
+								#		目前可选操作只有'add', 'removeAll';如不要操作，可以赋值'-'
+								#		'removeAll' 将设定表格行可多选，并删除选定行
+	actions: String,			# 对每行附加的操作，缺省为'edit,remove',可忽略;
+								# 		目前可选操作只有'edit', 'remove';如不要操作，可以赋值'-'
+	hasPagination: Boolean,		# 是否执行分页加载，缺省为false,可忽略
+	cellClick: @CellAction,		# 点击表格各列的响应处理，引用《单元格点击响应定义》
+	apiParams: @ApiParams,  	# 加载实体数据的加载参数，参见《服务请求参数》
+}
+
+===== 3.1.2.1
+《单元格点击响应定义》: CellAction => {
+	'($EntCol.name),...'		# 可以有多项定义,可以独立指定，也可以合并；如：'name', 'name,addr'
+		: 'deliver'				#		'deliver' 表示将结果发布到缺省的从组件上去，
+		| 'deliver.$Named'		#		'deliver.$Named' 表示将结果发布到指定($Named)的从组件上去
+}
+
+===== 3.1.2.2
+《服务请求参数》: ApiParams => {
+	'$PName'					# 可以指定多个请求参数，
+		: 'delivery.$Key'		# 		delivery 表明从主组件传递来的对象中取值
+		| 'selectedItem.$Key'	#		selectedItem 表明从左侧变栏选中的对象中取值
+								# 		$Key 表明将取值对象中的特定属性对应的值赋给$PName 
+}
+
+==== 3.1.3
+《表单组件类型》: BizFormCmp => {
+	type: 'form',				# 固定值字段，必须声明，
+	entityName: '@Entity.name',	# 关联实体名称，如指定则表示使用EntityForm否则使用标准Form
+
+			# 当定义了entityName时，entity 必须定义，其他字段不予考虑
+	entity: 'delivery.id'		# 表明如何获得实体的ID用于加载实体，其值只能是主组件发布过来的对象id
+		| 'selectedItem.id',	#		或者从侧边栏选中对象的id
+
+			# 当不定义entityName时，除entity字段外都应当考虑如何定义
+	fields: Array<@FormField>,	# 必须定义，当使用标准Form时，应当定义各种输入域的信息；引用《表单域定义》
+	buttons: Array<@FormButton>,# form表单的操作按钮，引用《表单按钮定义》;
+								#		只提供'submit'可用，缺省为submit,可省略；
+								#		也可以不使用，则为[], 表明所有更改自动提交
+	submit: 'deliver'			# 必须定义，表单提交的动作，'deliver'表示将表单内容发布给从组件
+		| @FormMethod,			# 		或者使用方法定义来描述，引用《表单方法定义》
+	load: @FormMethod			# 可以不定义，则表单内容全为缺省值，否则使用方法定义来描述，引用《表单方法定义》
+}
+
+===== 3.1.3.1
+《表单域定义》: FormField => {
+	name: String, 				# 字段名
+	label: String, 				# 字段的标签
+	disabled: Boolean			# 字段是否可用，禁止的组件只显示不可输入
+	type: 'string' 				# 字段的值类型；缺省数据类型，字符串类型，直接显示，用input控件输入
+		| 'text'				# 	长文本类型，直接显示，用textarea控件输入
+		| 'password'			# 	密码文本类型，不直接显示，用password控件输入
+		| 'bool'				# 	布尔类型，直接显示，用Checkbox空间输入
+		| 'number'				# 	数字类型，直接显示，用input控件输入
+		| 'CT:@CodeTable.name'	# 	码表引用类型，存储的是码值，显示的是码名，调用自动生成的码表选择器输入
+		| 'ENT:@Entity.name',	# 	实体引用类型，存储的是id，显示的是name字段，调用自动生成的实体选择其输入
+	tip: String 				# 字段的提示语，对输入型组件有效
+}
+
+===== 3.1.3.2
+《表单按钮定义》: FormButtom => {
+	name: 'submit',				# 目前只支持submit按钮
+	label: String,				# 对应按钮的文字标签，缺省为'确认'
+}
+
+===== 3.1.3.3
+《表单方法定义》: FormMethod => {
+	apiName: String,			# 此方法使用的接口名称
+	apiParams: @ApiParams,		# 调用方法时使用的上传参数，引用《服务请求参数》，不定义则缺省为{}	
+	rsp: @FormRespone			# 调用返回的处理，引用	《表单响应处理》
+}
+
+====== 3.1.3.4
+《表单响应处理》:	FormRespone => {
+	'form.($FormField.name)'	# 表单中有必要赋值的字段，可以多个
+		: 'delivery.$Key'		# 值 从主组件发过来的对象中取值，
+		| 'selectedItem.$Key'	#		或者侧边栏选中的对象中取值
+		| 'data.$Key'			#		或者从请求响应中取值
+}
+
+== 4
+《主导航条目定义》: NavItem => 
+	'@Page.name'					# 直接使用页面名称作为导航项 
+	| {
+		name: String,				# 导航名, 和父导航条目组装后对应特定页面名称
+		title: String,				# 导航标题
+		children: Array<@NavItem>	# 子导航条目集合
+			| '@Page.name,...'
+	}
+
+== 5
+《侧导航条目定义》: SideNavItem => {
+	name: String,					# 侧导航名称，便于引用
+	base: 'tree'					# 侧导航类型，tree/list并无本质不同，样式稍有差异
+		| 'list',
+	refer: 'ENT:@Entity.name',		# 导航数据来源指向特定实体
+	target: String,					# 可以选择的导航节点类型，使用实体数据源时，和实体名称一致，可以省略
+	items: Array<@SelectItem>		# 直接定义可选择实体，引用《可选择条目定义》；此定义项覆盖refer定义项
+}
+
+=== 5.1
+《可选择条目定义》: SelectItem => {
+	id: String | Integer,			# 条目id
+	name: String,					# 条目标题
+	nodeType: String,				# 条目类型
+	children: Array<@SelectItem>	# 子条目列表
+}
+
+== 6
+《页面定义》: Page => {
+	name: String,			# 页面名称，如果是一组模块的不同页面，应当共享前缀。如：'sys-org', 'sys-setting'
+	title: String,			# 页面标题，将会修改浏览器的标题
+	routeKey: Boolean,		# 页面是否接受路由中传递的参数
+	ifAuth: Boolean,		# 页面是否需要认证，默认为true，可省略；
+	ifUnique: Boolean,		# 页面是否独立页面，默认为false，可省略；
+	layout: @PageLayout		# 引用《页面布局定义》
+}
+
+=== 6.1
+《页面布局定义》: PageLayout => {
+	topbar: {								# 顶部导航设置，可忽略
+		ifNav: Boolean,						# 	是否展示导航菜单，缺省为true，可省略
+		ifEntry: Boolean					# 	是否展示登录信息及操作，缺省为true，可省略
+	},
+	lside: {								# 左侧导航，如没有 不用定义	
+		cmp: '@SideNavItem.name',			# 左侧导航使用的组件，引用《侧导航条目定义》
+		select								# 选中导航条目的操作，
+			: 'jumpTo(@Page.name, id+name)'	# 	jumpTo将跳转到指定页，并携带选中条目的id/name属性
+			| 'selectedItem=item'			#	将选中条目赋给特定变量selectedItem，以便页面各元素调用
+	},
+	titlebar: String,						# 面包屑栏的文字简易模板，缺省为@Page.title字段
+	page: @BizCmp  							# 页面组件声明，可以是《业务组件定义》（name将自动扩展），
+		| 'CFG:@Config.name',				# 		也可以是已定义的业务组件名称
+}
+
+== 7
+《模拟数据定义》: SimData => {
+	'@Entity.name': Array<@EntitySimData>	# 可以生成多个实体的模拟数据，引用《实体模拟数据定义》
+}
+
+=== 7.1
+《实体模拟数据定义》: EntitySimData => {
+	id: String | Integer,		# 主键， 必须， 值不能为0
+	parentId: String | Integer,	# 父节点ID，如不是树形结构不要定义，根结点的parentId为0
+	'@EntCol.name': $Value 		# 其他列属性键值对		 
+}

@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import routeMixin from '@/_mixins/routeMixin';
+import routeKeyEncode from '@/_mixins/routeKeyEncode';
 import ixModals from '@/components/ixModal/modals';
 import ixAlert from '@/components/ixModal/alert';
 import ixNav from '@/components/ixNav';
@@ -27,7 +27,7 @@ var sessionFactory = IXW.ns('SessionFactory');
 
 export default {
 	name: 'app',
-	mixins: [routeMixin],
+	mixins: [routeKeyEncode],
 	data: function () {
 		return {
 			navItems: [],
@@ -41,7 +41,7 @@ export default {
 		initSession(session) {
 			this.navItems = session.getNavs();
 			this.focusNav(this.$route.name);
-			// console.log('caused by init Sesson:');
+			// console.log('caused by init Sesson:', this.navItems);
 		},
 		focusNav(name) { this.activeIndex = name; },
 		navTo(key) { 

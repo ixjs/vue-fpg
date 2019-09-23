@@ -92,10 +92,7 @@ function Session(data) {
 			getNavs() { return []; },
 			getValidPages() { return {}; },
 			getModuleChecker() { return {}; },
-			checkIfRsrcValid() { return false; },
-
-			isManager() { return false; }, // 是不是管理岗
-			isLeader() { return false; }
+			checkIfRsrcValid() { return false; }
 		};
 
 	var privMgr = new PrivsManager(data.privs);
@@ -112,10 +109,7 @@ function Session(data) {
 		getNavs() { return privMgr.navList; },
 		getValidPages() { return privMgr.pagesHT; },
 		getModuleChecker: privMgr.getModuleChecker,
-		checkIfRsrcValid: privMgr.checkIfValid,
-
-		isManager() { return true; }, // 是不是管理岗
-		isLeader() { return true; }
+		checkIfRsrcValid: privMgr.checkIfValid
 	};
 }
 

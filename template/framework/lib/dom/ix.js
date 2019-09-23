@@ -603,7 +603,7 @@ var IpPattern = /^([0-9]|[1-9]\d|1\d\d|2[0-4]\d|25[0-5])\.([0-9]|[1-9]\d|1\d\d|2
 
 IX.extend(String.prototype, {
 	camelize: function(){ return this.replace(/\-(\w)/ig, function(B, A) {return A.toUpperCase();}); },
-	capitalize: function(){ return this.charAt(0).toUpperCase() + this.substring(1).toLowerCase(); },
+	capitalize: function(){ return this.charAt(0).toUpperCase() + this.substring(1); },
 	replaceAll:function(os, ns){return this.replace(new RegExp(os,"gm"),ns);},
 	loopReplace:function(varr){return IX.loop(varr, this, function(acc, item){
 		return acc.replaceAll(item[0], item[1]);

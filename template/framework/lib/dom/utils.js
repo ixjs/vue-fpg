@@ -9,6 +9,20 @@ IXW.ns = function (subNS) {
 	return IX.ns([PRJ_NS].concat(subNS).join('.'));
 };
 
+IXW.dup = function(obj) {
+	return JSON.parse(JSON.stringify(obj));
+};
+
+IXW.iterTree = function(items, fn) {
+	function iterFn(_items) {
+		IX.iterate(_items, function(item) {
+			fn(item);
+			iterFn(item.children || []);
+		});
+	}
+	iterFn(items);
+};
+
 var _head = document.getElementsByTagName('head')[0];
 function _afterLoadJsFn(script, nextFn) {
 	if (!script.readyState) {

@@ -3,6 +3,7 @@ var path = require('path');
 var jsdom = require('jsdom');
 
 var utils = require('../../lib/node/utils');
+
 var envDir = utils.$resolve('lib/dom');
 
 function removeUnusedScript(tag) {
@@ -43,7 +44,7 @@ function parserIndexFile(entryFile, srcDir, targetDir, cbFn) {
 		if (IX.isEmpty(targetName)) {
 			if (!isContent)
 				jsFiles.put(filepath, { type: 'copy', value: realFilepath });
-			if (filepath && filepath.substring(0,1) == '/')
+			if (filepath && filepath.substring(0, 1) == '/')
 				tag.setAttribute('src', filepath.substring(1));	
 			console.log('\treserved:', filepath);
 			return;

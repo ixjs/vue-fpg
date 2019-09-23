@@ -85,21 +85,21 @@ var webpackConfig = merge(baseWebpackConfig, {
 	]
 });
 
-if (buildConfig.productionGzip) {
-	var CompressionWebpackPlugin = require('compression-webpack-plugin');
+// if (buildConfig.productionGzip) {
+// 	var CompressionWebpackPlugin = require('compression-webpack-plugin');
 
-	webpackConfig.plugins.push(new CompressionWebpackPlugin({
-			asset: '[path].gz[query]',
-			algorithm: 'gzip',
-			test: new RegExp(
-				'\\.(' +
-				buildConfig.productionGzipExtensions.join('|') +
-				')$'
-			),
-			threshold: 10240,
-			minRatio: 0.8
-	}));
-}
+// 	webpackConfig.plugins.push(new CompressionWebpackPlugin({
+// 			asset: '[path].gz[query]',
+// 			algorithm: 'gzip',
+// 			test: new RegExp(
+// 				'\\.(' +
+// 				buildConfig.productionGzipExtensions.join('|') +
+// 				')$'
+// 			),
+// 			threshold: 10240,
+// 			minRatio: 0.8
+// 	}));
+// }
 
 if (buildConfig.bundleAnalyzerReport) {
 	var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;

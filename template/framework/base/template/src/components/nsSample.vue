@@ -1,5 +1,5 @@
 <template>
-	<div class="{{ ns }}-sample">
+	<div class="ns-sample">
 		<h2>{{desc}}</h2>
 	</div>
 </template>
@@ -16,7 +16,7 @@ export default {
 </script>
 
 <style lang='less'>
-.{{ ns }}-sample {
+.ns-sample {
 	border: 1px solid #fcc; background: #ccf;
 }
 </style>

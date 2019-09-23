@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router';
 
 var nsRoute = IXW.ns('Route');
+var SessionFactory = IXW.ns('SessionFactory');
 
 var Vue = null;
 var router = null;
@@ -19,7 +20,7 @@ function parseRouters(routes, isMod) {
 }
 
 function getRouterPath(name, params) {
-	var r = router.resolve({ name: name, params: params });
+	var r = router.resolve({ name: name, params: IX.inherit({ key: '~' }, params) });
 	return r.route.fullPath;
 }
 // check if page can be visited by current user!
@@ -33,9 +34,8 @@ function checkIfValid(name) {
 	}
 	if (!nsRoute.ifRequireAuth(toName)) // check if it is public page 
 		return true;
-	return true;
-	// var session = SessionFactory.getInstance();
-	// return session.checkIfRsrcValid(toName);
+	var session = SessionFactory.getInstance();
+	return session.checkIfRsrcValid(toName);
 }
 
 // 判断是否需要新打开弹窗
@@ -89,7 +89,6 @@ nsRoute.jumpTo = function (name, params) {
 		console.error("Can't visit path becuase of priviledge :", path);
 		return;
 	}
-
 	// 判断是否需要新打开弹窗
 	if (checkIfOpenUniquePage(path))
 		window.open('#' + path, '_blank');
