@@ -6,7 +6,7 @@
 
 	配置文件的定义描述：参见 framework/qde/configuration.def 文件
 
-	在 framework/qde/sample 目录下有两个文件都可以用来创建项目
+	在 framework/qde/samples 目录下有两个文件都可以用来创建项目
 
 		profile.js ： 完整配置下的定制化文件
 		simplify.js ： 简化版的定制化文件
@@ -15,7 +15,7 @@
 
 1. 在项目的根目录下，如：/home/coder/fpg；创建（或者复制/链接）定制化文件为新项目的配置文件：
 
-		# cp framework/qde/sample/simplify.js prjName.js
+		# cp framework/qde/samples/simplify.js prjName.js
 	
 2. 执行快速开发项目创建命令，如：
 		
