@@ -13,16 +13,16 @@ import 'tinymce/plugins/lists'; // 列表插件
 import 'tinymce/plugins/wordcount'; // 字数统计插件
 
 const EditorConfig = {
-	language_url: 'static/tinymce/langs/zh_CN.js',// 语言包的路径
-	language: 'zh_CN',//语言
-	content_css: 'static/tinymce/skins/content/default/content.css',// 
-	skin_url: 'static/tinymce/skins/ui/oxide',// skin路径
-	height: 300,//编辑器高度
-	branding: false,//是否禁用“Powered by TinyMCE”
-	menubar: false,//顶部菜单栏显示
+	language_url: 'static/tinymce/langs/zh_CN.js', // 语言包的路径
+	language: 'zh_CN', // 语言
+	content_css: 'static/tinymce/skins/content/default/content.css', // 
+	skin_url: 'static/tinymce/skins/ui/oxide', // skin路径
+	height: 300, // 编辑器高度
+	branding: false, // 是否禁用“Powered by TinyMCE”
+	menubar: false, // 顶部菜单栏显示
 
-	plugins: 'lists table wordcount',// 'lists image media table wordcount',
-	toolbar: 'undo redo |  formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat'
+	plugins: 'lists table wordcount', // 'lists image media table wordcount',
+	toolbar: 'undo redo | formatselect | bold italic forecolor backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | lists image media table | removeformat'
 };
 
 export default {

@@ -40,6 +40,7 @@ module.exports = {
 	"skipInterpolation": [
 		"framework/base/**/*.*",
 		"framework/qde/**/*.*",
+		"framework/ssf/**/*.*",
 		"framework/share/**/*.*"
 	],
 	"completeMessage": "To get started:\n\n\tcd {{destDirName}}\n\tsh framework/init.sh\n\nDocumentation can be found at {{destDirName}}/framework/init.sh "

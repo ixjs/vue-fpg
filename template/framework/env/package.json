@@ -8,16 +8,21 @@
 	"scripts": {
 		"create": "sh framework/create.sh",
 		"qde": "sh framework/create-qde.sh",
+		"ssf": "sh framework/create-ssf.sh",
 		"lint:share": "eslint --ext .js,.vue framework/share",
 		"lint:env": "eslint --ext .js framework/bin framework/lib/node/utils.js framework/qde/lib framework/qde/index.js",
 		"new-project-alias": "/bin/echo 'Testing'"
 	},
 	"dependencies": {
+		"@antv/g2plot": "^0.11.21",
+		"@antv/g6": "^3.2.7",
+		"@tinymce/tinymce-vue": "^2.0.0",
 		"element-ui": "^2.3.6",
 		"md5.js": "^1.3.5",
-		"@tinymce/tinymce-vue": "^2.0.0",
 		"tinymce": "^5.0.3",
+		"v-viewer": "^1.4.2",
 		"vue": "^2.1.10",
+		"vue-drag-resize": "^1.3.2",
 		"vue-i18n": "^6.0.0",
 		"vue-resource": "^1.2.0",
 		"vue-router": "^2.2.0"

@@ -11,7 +11,7 @@
 			<router-view></router-view>
 		</transition>
 
-		<ix-modals></ix-modals>
+		<ix-modals />
 	</div>
 </template>
 

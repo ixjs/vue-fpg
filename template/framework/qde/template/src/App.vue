@@ -3,7 +3,7 @@
 		<transition name='page-fade' mode='out-in'>
 			<router-view></router-view>
 		</transition>
-		<ix-modals></ix-modals>
+		<ix-modals />
 	</div>
 </template>
 
