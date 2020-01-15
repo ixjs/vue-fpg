@@ -54,4 +54,4 @@ $ git commit -m "initialize project"
 
 # 升级
 
-	2019-9-23  V1.1.0 提供快速项目开发能力： [framework/UPGRADE.md](https://github.com/ixjs/vue-fpg/blob/master/template/framework/UPGRADE.md#2019-9-23)
+	2019-9-23  V1.1.0 提供快速项目开发能力： [framework/UPGRADE.md](https://github.com/ixjs/vue-fpg/blob/master/template/framework/UPGRADE.md)
