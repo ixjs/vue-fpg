@@ -23,7 +23,7 @@ export default {
 	},
 	watch: {
 		'$route'(to) {
-			if (to.params.id !== this.pageName)
+			if (to.params.key !== this.pageName)
 				this.loadPage();
 		}
 	},
@@ -51,7 +51,7 @@ export default {
 			this.loadData();
 		},
 		loadPage() {
-			this.pageName = this.$route.params.id || 'a';
+			this.pageName = this.$route.params.key != 'b' ? 'a' : 'b';
 			serviceFactory.dataService(this.pageName, {}, (data) => {
 				this.layout = ssfFactory.getLayout($XP(data, 'layout', 'default'));
 				var topbar = $XP(data, 'topbar', null);

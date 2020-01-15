@@ -38,6 +38,14 @@ module.exports = {
 		assetsSubDirectory: 'static',
 		assetsDemoDirectory: '_demo',
 		assetsPublicPath: '/',
+		testman: {
+			services: {
+				'/session': 'testman/sim/session', // mock session simulator;
+				'/api': 'testman/sim/api' // mock api simulator;
+			},
+			output: 'testman/tmp', // output by services simulators
+			log: 'testman/log' // log by services simulators
+		},
 		proxyTable: {
 			// '/api': {
 			// 	target: 'http://server.com',

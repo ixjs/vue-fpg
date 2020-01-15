@@ -23,7 +23,7 @@ utils.execCmd('rm -rf ' + path.join(targetDir, 'src/router'));
 utils.execCmd('rm -f ' + path.join(targetDir, 'src/App.vue'));
 utils.execCmd('rm -f ' + path.join(targetDir, 'src/main.js'));
 utils.execCmd('rm -rf ' + path.join(targetDir, 'static/services'));
-utils.execCmd('rm -rf ' + path.join(targetDir, 'static/sim'));
+utils.execCmd('rm -rf ' + path.join(targetDir, 'static/testman'));
 
 // generate files for QDE
 qde(prjName, cfg, () => {

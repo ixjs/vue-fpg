@@ -23,13 +23,13 @@ var Testcases4Render = [
 var tmpDir = utils.$resolve('qde/tmp');
 console.log('tmpDir:', tmpDir);
 
-IX.iterate(Testcases4Parser, (name) => {
-	var parserCase = require('./tasks/' + name + '.js');
-	var result = parserCase();
-	console.log('Parse:', name, utils.inspect(result)); //JSON.stringify(result));
-	var content = 'module.exports = ' + utils.inspect(result) +';'; //formatter.format(result, 0, false) + ';' ;
-	IX.safeWriteFileSync(path.join(tmpDir, 'parsed', name + '.js'), content);
-});
+// IX.iterate(Testcases4Parser, (name) => {
+// 	var parserCase = require('./tasks/' + name + '.js');
+// 	var result = parserCase();
+// 	console.log('Parse:', name, utils.inspect(result)); //JSON.stringify(result));
+// 	var content = 'module.exports = ' + utils.inspect(result) +';'; //formatter.format(result, 0, false) + ';' ;
+// 	IX.safeWriteFileSync(path.join(tmpDir, 'parsed', name + '.js'), content);
+// });
 IX.iterate(Testcases4Render, (name) => {
 	var renderCase = require('./tasks/' + name + '.js');
 	renderCase(tmpDir);

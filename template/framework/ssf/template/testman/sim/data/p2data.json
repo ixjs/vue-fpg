@@ -1,0 +1,11 @@
+{
+	"topbar" : { "title": "测试信息中心-0002" },
+	"panel1": { "msg": "it is msg1 for p2" },
+	"panel2": { "msg": "it is msg2 for p2" },
+	"panel3": { "msg": "it is msg3 for p2" },
+	"panel4": { "msg": "it is msg4 for p2" },
+	"panel5": { "msg": "it is msg5 for p2" },
+	"panel6": { "msg": "it is msg6 for p2" },
+	"panel7": { "msg": "it is msg7 for p2" },
+	"panel8": { "msg": "it is msg8 for p2" }
+}

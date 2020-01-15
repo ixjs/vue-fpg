@@ -2,4 +2,5 @@
 npm-debug.log
 dist/
 rel/
-
+testman/log/
+testman/tmp/

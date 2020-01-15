@@ -22,7 +22,7 @@ var isInDom = false;
 try {
 	isInDom = window && ("navigator" in window);
 }catch(ex){}
-var ixGlobal = isInDom?window: global;
+var ixGlobal = isInDom ? window: global;
 
 var IX_GLOBAL = ixGlobal;
 IX_GLOBAL.IX_GLOBAL = IX_GLOBAL;

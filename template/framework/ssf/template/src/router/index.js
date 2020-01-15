@@ -1,7 +1,7 @@
 var routerUtil = require('@/router');
 
 module.exports = [{
-	path: '/ssf/:id',
+	path: '/ssf/:key',
 	name: 'ssf',
 	component: routerUtil.getPageComponent('ssf')
 }];

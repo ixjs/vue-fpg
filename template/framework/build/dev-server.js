@@ -7,6 +7,7 @@ var webpack = require('webpack');
 var proxyMiddleware = require('http-proxy-middleware');
 
 var utils = require('../lib/node/utils');
+var testman = require('./testman');
 
 var projectFolder = process.argv[2];
 var devConfig = utils.getProjectConfig(projectFolder, 'dev');
@@ -73,6 +74,8 @@ function useAssets(subDir) {
 }
 useAssets(devConfig.assetsSubDirectory);
 useAssets(devConfig.assetsDemoDirectory);
+
+testman(app, prjResolve, devConfig.testman || {});
 
 var uri = 'http://localhost:' + port;
 
