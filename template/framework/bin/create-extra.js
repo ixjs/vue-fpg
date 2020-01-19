@@ -18,8 +18,8 @@ var content = fs.readFileSync(pkgFile, 'utf8');
 if (content.indexOf('"dev:' + prjName + '"') >= 0) 
 	console.log('Project "' + prjName + '" scripts already applied!');
 else {
-	console.log('Appying scripts for Project "' + prjName + '" ...');
+	console.log('Applying scripts for Project "' + prjName + '" ...');
 	destStr = destStr.replace(/newprj/g, prjName);
 	fs.writeFileSync(pkgFile, content.replace(anchorStr, destStr));
-	console.log('Appying done');
+	console.log('Applying done');
 }
