@@ -1,14 +1,17 @@
 <template>
-	<div class="p2">
-		<span>{{desc}}</span>
-		<biz-example />
-		<ns-biz-sample />
+	<ix-layout>
+		<div class="p2">
+			<span>{{desc}}</span>
+			<biz-example />
+			<ns-biz-sample />
 
-		<router-view></router-view>
-	</div>
+			<router-view></router-view>
+		</div>
+	</ix-layout>
 </template>
 
 <script>
+import ixLayout from '@/layout/default';
 import BizExample from '@/biz-components/example';
 import nsBizSample from 'biz-components/nsBizSample';
 
@@ -20,6 +23,7 @@ export default {
 		};
 	},
 	components: {
+		ixLayout,
 		BizExample,
 		nsBizSample
 	}

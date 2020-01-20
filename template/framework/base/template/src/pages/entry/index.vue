@@ -1,17 +1,16 @@
 <template>
-	<entry-layout>
+	<ix-layout>
 		<ix-form :form='loginForm' :fields='fields' :btns='btns'
 				@submit='doSubmit' /> 
-	</entry-layout>
+	</ix-layout>
 </template>
 
 <script>
 import MD5 from 'md5.js';
+import ixLayout from '@/layout/entry';
 import ixForm from '@/components/ixForm/base';
 import ixAlert from '@/components/ixModal/alert';
 import routeKeyEncode from '@/_mixins/routeKeyEncode';
-
-import entryLayout from 'src/layout/entry';
 
 var serviceFactory = IXW.ns('serviceFactory');
 var sessionFactory = IXW.ns('SessionFactory');
@@ -33,8 +32,8 @@ export default {
 				{ name: 'password', label: '密码', type: 'password', tip: '请输入密码' }
 			],
 			btns: [
-				{ name: 'submit', text: '登陆' },
-				{ name: 'cancel', text: '取消' }
+				{ name: 'submit', label: '登陆' },
+				{ name: 'cancel', label: '取消' }
 			]
 		};
 	},
@@ -54,13 +53,13 @@ export default {
 				password: maskPwd(form.password)
 			}, (data) => {
 				sessionFactory.resetSession(data);
-				this.jumpTo('cdt');
+				this.jumpTo('/');
 			});
 		}
 	},
 	components: {
-		ixForm,
-		entryLayout
+		ixLayout,
+		ixForm
 	}
 };
 </script>

@@ -3,12 +3,7 @@ var tplFactory = require('./tplFactory');
 
 const frameFiles = [
 	'index.html',
-	'src/main.js',
-	'src/App.vue',
-	'src/layout/default.vue',
-	'src/layout/entry.vue',
-	'src/pages/entry/index.vue',
-	'src/session/index.js'
+	'src/main.js'
 ];
 
 module.exports = (prjDir, tplData) => {

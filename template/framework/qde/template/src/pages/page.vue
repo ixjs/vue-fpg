@@ -11,7 +11,7 @@
 <script>
 <% if (encodeRouteKey) { %>import routeKeyEncode from '@/_mixins/routeKeyEncode';
 <% } if (useRouteKey) { %>import routeKeyDecode from '@/_mixins/routeKeyDecode';
-<% }%>import ixLayout from 'src/layout/<%- layoutType %>';
+<% }%>import ixLayout from '@/layout/<%- layoutType %>';
 <% if (lsideCmp) { %>import lsideCmp from 'components/sideNav/<%- lsideCmp %>';
 <% } %>import <%- bizCmpName %> from 'biz-components/<%- bizCmpName %>';
 
@@ -35,9 +35,3 @@ export default {
 	}
 };
 </script>
-
-<style lang='less'>
-.page-<%- tag %> {
-	
-}
-</style>

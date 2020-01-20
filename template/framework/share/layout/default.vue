@@ -2,7 +2,7 @@
 	<el-container :class='"default-layout page-" + $route.name'>
 		<el-header>
 			<span class='logo'>
-				<a @click='navTo()'><%- fullname %></a>
+				<a @click='navTo()'>{{title}}</a>
 			</span>
 			<ix-nav v-if='ifNav' :activeIndex='activeIndex' :items='navItems' @select='navTo' />
 			<div v-if='ifEntry' class='profile-tip'>
@@ -25,9 +25,9 @@
 </template>
 
 <script>
-import routeKeyEncode from '@/_mixins/routeKeyEncode';
-import routeKeyDecode from '@/_mixins/routeKeyDecode';
-import ixNav from '@/components/ixNav/index';
+import routeKeyEncode from '../_mixins/routeKeyEncode';
+import routeKeyDecode from '../_mixins/routeKeyDecode';
+import ixNav from '../components/ixNav/index';
 
 var sessionFactory = IXW.ns('SessionFactory');
 
@@ -41,6 +41,7 @@ export default {
 	},
 	data() {
 		return {
+			title: IXW_TITLE || '系统',
 			navItems: [],
 			activeIndex: null,
 			pageTitle: '',
@@ -52,9 +53,25 @@ export default {
 			entryTitle: '登陆'
 		};
 	},
+	watch: {
+		'$route'(to) {
+			// console.log('switch to:', to);
+			this.showPage(to.name);
+		}
+	},
 	methods: {
 		navTo(key) {
 			this.jumpTo(key || $XP(this.navItems, '0.name'));
+		},
+		showPage(pageName) {
+			var pageInfo = sessionFactory.getPageInfo(pageName);
+			if (!pageInfo)
+				return;	
+			this.pageTitle = pageInfo.title;
+			this.activeIndex = pageInfo.navItem;
+
+			if (this.lsideCmp)
+				this.focusedId = $XP(this.routeKey, 'id');
 		},
 		entryClick() {
 			if (this.isLogin)
@@ -75,14 +92,7 @@ export default {
 		this.entryTitle = this.isLogin ? '退出' : '登陆';
 		this.navItems = session.getNavs();
 
-		var pageInfo = sessionFactory.getPageInfo(this.$route.name);
-		if (!pageInfo)
-			return;
-		this.pageTitle = pageInfo.title;
-		this.activeIndex = pageInfo.navItem;
-
-		if (this.lsideCmp)
-			this.focusedId = $XP(this.routeKey, 'id');
+		this.showPage(this.$route.name);
 	}
 };
 </script>

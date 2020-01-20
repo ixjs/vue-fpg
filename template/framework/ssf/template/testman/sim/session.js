@@ -12,6 +12,7 @@ module.exports = {
 			'privs': Privs
 		};
 	},
+	// example only
 	'get /key/:id/:name'(params, outputDir) {
 		IX.safeWriteFileSync(outputDir + '/abc.txt', 'ABCDEFG');
 		return {

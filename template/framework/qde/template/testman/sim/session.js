@@ -16,7 +16,7 @@ module.exports = {
 	'post /login'(params) {
 		isLogin = params.account == Name && params.password == Pass;
 
-		if (isLogin)
+		if (!isLogin)
 			throw new Error('Unmatched name and password');
 		return IX.inherit(sessionData, {
 			token: 'TheTokenFromServer'
@@ -27,7 +27,7 @@ module.exports = {
 		return {};
 	},
 	// example only
-	'get /key/:id/:name'(params, outputDir) { 
+	'get /key/:id/:name'(params, outputDir) {
 		IX.safeWriteFileSync(outputDir + '/abc.txt', 'ABCDEFG');
 		return {
 			msg: params.id + '::' + params.name

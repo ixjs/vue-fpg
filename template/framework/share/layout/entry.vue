@@ -1,7 +1,7 @@
 <template>
 	<div :class='"entry-layout page-" + $route.name'>
 		<div class='panel'>
-			<h3><%- fullname %></h3>
+			<h3>{{ title }}</h3>
 			<slot />
 		</div>
 	</div>
@@ -10,6 +10,11 @@
 <script>
 export default {
 	name: 'EntryLayout',
+	data() {
+		return {
+			title: IXW_TITLE || '系统'
+		};
+	}
 };
 </script>
 

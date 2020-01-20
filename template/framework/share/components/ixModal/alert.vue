@@ -23,7 +23,7 @@ export default {
 	},
 	methods: {
 		confirm() {
-			this.okFn();
+			if (IX.isFn(this.okFn)) this.okFn();
 			this.close();
 		}
 	},

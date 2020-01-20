@@ -4,7 +4,7 @@ var Privs = [
 	{ id: 2,   parentId: 0, title: 'Page 2',       name: 'p2',   type: 'nav',  idx: 1 },
 	{ id: 21,  parentId: 2, title: 'Sub Page 2.1', name: 'sub1', type: 'nav',  idx: 1 },
 	{ id: 22,  parentId: 2, title: 'Sub Page 2.2', name: 'sub2', type: 'nav',  idx: 2 },
-	{ id: 100, parentId: 0, title: 'Unique Page',  name: 'up',   type: 'page', idx: 100 }
+	{ id: 100, parentId: 0, title: 'Unique Page',  name: 'np',   type: 'page', idx: 100 }
 ];
 var sessionData = {
 	id: 1,
@@ -22,7 +22,7 @@ module.exports = {
 	'post /login'(params) {
 		isLogin = params.account == Name && params.password == Pass;
 
-		if (isLogin)
+		if (!isLogin)
 			throw new Error('Unmatched name and password');
 		return IX.inherit(sessionData, {
 			token: 'TheTokenFromServer'
@@ -32,6 +32,7 @@ module.exports = {
 		isLogin = false;
 		return {};
 	},
+	// example only
 	'get /key/:id/:name'(params, outputDir) {
 		IX.safeWriteFileSync(outputDir + '/abc.txt', 'ABCDEFG');
 		return {

@@ -74,6 +74,7 @@ function useAssets(subDir) {
 }
 useAssets(devConfig.assetsSubDirectory);
 useAssets(devConfig.assetsDemoDirectory);
+useAssets('rel');
 
 testman(app, prjResolve, devConfig.testman || {});
 

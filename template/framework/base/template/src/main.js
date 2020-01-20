@@ -1,7 +1,7 @@
 import Vue from 'vue';
 
 import '@/engine';
-import pageSession from '@/session';
+import pageSession from '@/session/enhance';
 
 import App from './App';
 import pageRouters from './router';
@@ -14,7 +14,7 @@ nsPrj.misc.init(Vue);
 nsPrj.$ele.init(Vue);
 nsPrj.serviceFactory.init(Vue, IXW.Service.entries);
 
-sessionFactory.register(pageSession.SessionClass);
+sessionFactory.register(pageSession.BackendSession);
 nsRoute.init(Vue, pageRouters);
 
 /* eslint-disable no-new */

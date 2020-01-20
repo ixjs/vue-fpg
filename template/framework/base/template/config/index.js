@@ -33,7 +33,7 @@ module.exports = {
 	// },
 	dev: {
 		env: { NODE_ENV: '"development"' },
-		port: '{{port}}',
+		port: {{port}},
 		autoOpenBrowser: true,
 		assetsSubDirectory: 'static',
 		assetsDemoDirectory: '_demo',
@@ -94,4 +94,4 @@ module.exports = {
 			appendix: '.map'
 		}
 	}
-}
+};

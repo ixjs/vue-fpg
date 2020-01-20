@@ -1,13 +1,16 @@
 <template>
-	<div class="p1">
-		<span>{{desc}}</span>
+	<ix-layout>
+		<div class="p1">
+			<span>{{desc}}</span>
 
-		<sample />
-		<ns-sample />
-	</div>
+			<sample />
+			<ns-sample />
+		</div>
+	</ix-layout>
 </template>
 
 <script>
+import ixLayout from '@/layout/default';
 import sample from '@/components/sample';
 import nsSample from 'components/nsSample';
 
@@ -26,6 +29,7 @@ export default {
 		};
 	},
 	components: {
+		ixLayout,
 		sample,
 		nsSample
 	}

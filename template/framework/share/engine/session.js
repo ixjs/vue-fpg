@@ -44,7 +44,7 @@ sessionFactory.resetSession = function (data) { newInstance(data); };
 
 function doClear(cbFn) {
 	clearInstance();
-	cbFn(session);
+	if (IX.isFn(cbFn)) cbFn(session);
 }
 sessionFactory.loadSession = function (cbFn) {
 	// 判断有没有token, 如果有，才会请求session接口

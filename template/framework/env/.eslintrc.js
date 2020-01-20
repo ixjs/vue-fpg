@@ -18,6 +18,7 @@ module.exports = {
 		'IX' : false,
 		'IXW' : false,
 		'IXW_NS' : false,
+		'IXW_TITLE' : false,
 		'$XP' : false,
 		'$Xw' : false,
 		'$XD' : false,

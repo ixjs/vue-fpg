@@ -18,9 +18,9 @@ try {
 // clean files genereated by base template 
 utils.execCmd('rm -rf ' + path.join(targetDir, 'src/components/nsSample.vue'));
 utils.execCmd('rm -rf ' + path.join(targetDir, 'src/biz-components/nsBizSample.vue'));
-utils.execCmd('rm -rf ' + path.join(targetDir, 'src/pages'));
+utils.execCmd('rm -rf ' + path.join(targetDir, 'src/pages/p*'));
+utils.execCmd('rm -rf ' + path.join(targetDir, 'src/pages/np'));
 utils.execCmd('rm -rf ' + path.join(targetDir, 'src/router'));
-utils.execCmd('rm -f ' + path.join(targetDir, 'src/App.vue'));
 utils.execCmd('rm -f ' + path.join(targetDir, 'src/main.js'));
 utils.execCmd('rm -rf ' + path.join(targetDir, 'static/services'));
 utils.execCmd('rm -rf ' + path.join(targetDir, 'static/testman'));

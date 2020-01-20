@@ -1,10 +1,10 @@
-var routerUtil = require('@/router');
+import { getPageComponent, getPageGroupRouter } from '@/router';
 
-module.exports = [
+const routes = [
 {
 	path: '/p1',
 	name: 'p1',
-	component: routerUtil.getPageComponent('p1')
+	component: getPageComponent('p1')
 }
 // ,{
 // 	path: '/entry',
@@ -16,18 +16,21 @@ module.exports = [
 // 	}
 // }
 ].concat([
-	// 'p1',	// sample page 1
+	// 'p1',
 	['p2',	['sub1', 'sub2']], // sample page 2 and sub page 1/2
-	'np'
-].map(function (item) {
-	return routerUtil.getPageGroupRouter(item);
+	'np',
+	'entry'
+].map((item) => { // 不要简化，诡异！
+	return getPageGroupRouter(item);
 }));
 
+export default routes;
+
 var nsRoute = IXW.ns('Route');
-nsRoute.ifRequireAuth = () => { // function (pageName) {
-	return false;
+nsRoute.ifRequireAuth = (pageName) => {
+	return pageName != 'entry';
 };
 // 判断是否独立页面：即需要打开新页并独立渲染；
-nsRoute.ifUniquePage = function (modName) {
+nsRoute.ifUniquePage = (modName) => {
 	return modName == 'np';
 };

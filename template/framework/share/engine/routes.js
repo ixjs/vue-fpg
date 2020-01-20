@@ -32,6 +32,8 @@ function checkIfValid(name) {
 		var r = router.match(name);
 		toName = r.name;
 	}
+	if (!toName)
+		return false;
 	if (!nsRoute.ifRequireAuth(toName)) // check if it is public page 
 		return true;
 	var session = SessionFactory.getInstance();
@@ -71,7 +73,7 @@ nsRoute.init = function (vue, pageRouters) {
 		var toName = to.name || to.fullPath;
 		if (!checkIfValid(toName)) {
 			console.error("Can't visit page becuase of priviledge :", toName);
-			return next(false);
+			return next({ path: '/' });
 		}
 		var path = redirectRoute(to);
 		if (path == null) next();
@@ -90,7 +92,7 @@ nsRoute.jumpTo = function (name, params) {
 		return;
 	}
 	// 判断是否需要新打开弹窗
-	if (checkIfOpenUniquePage(path))
+	if (path !== '/' && checkIfOpenUniquePage(path))
 		window.open('#' + path, '_blank');
 	else
 		router.push(path);
